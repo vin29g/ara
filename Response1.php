@@ -33,7 +33,7 @@
 
 			?>
 	</div>
-	<form action="http://www.nitw.ac.in/alumnirequest/index/transactionStatus" id="payform" method="POST">
+	<form action="<?php echo base_url()?>index/transactionStatus" id="payform" method="POST">
 		<input type="hidden" name="req_id" value="<?php echo $_POST['txnid'] ?>"/>
 		<input type="hidden" name="txnrefno" value="<?php echo $_POST['mihpayid'] ?>">
 		<input type="hidden" name="bankrefno" value="<?php echo $_POST['bank_ref_num'] ?>">

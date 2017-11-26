@@ -9,11 +9,11 @@
     <div class="col-lg-12">
     <h2>Select an option</h2>
       <p>
-        <a href="<?=base_url('index/viewStatus')?>" class="btn btn-squared-default btn-primary">
+        <a href="<?=base_url('viewStatus')?>" class="btn btn-squared-default btn-primary">
             <i class="fa fa-paper-plane-o fa-5x"></i><br/>
             View Status of <br/>Application
         </a>
-        <a href="<?=base_url()?>index/applyForTranscript" class="btn btn-squared-default btn-success">
+        <a href="<?=base_url()?>applyForTranscript" class="btn btn-squared-default btn-success">
           <i class="fa fa-mortar-board fa-5x"></i><br/>
           Apply for <br/>Transcripts
         </a>

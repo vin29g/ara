@@ -64,5 +64,11 @@ $route['(:any)paints']='index/paints';
 $route['faq']='index/faq';
 $route['contactus']='index/contactus';
 $route['testimonials']='index/reviews';
+
+#routes for the required project
+$route['applyForTranscript']='index/applyForTranscript';
+$route['viewStatus']='index/viewStatus';
+$route['basicInformation'] = 'index/basicInformation';
+
 $route['paintcost']='index';
 $route['asianpaint']='index/paints';

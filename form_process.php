@@ -54,7 +54,7 @@ if(!isset($_POST['firstname'])){header("location: makePayments1.php");}
 </div>
 
 <div>
-	<form name="postForm" action="https://test.payu.in/_payment" method="POST" >
+	<form name="postForm" action="https://secure.payu.in/_payment" method="POST" >
 		<input type="hidden" name="key" value="<?php echo $MERCHANT_KEY; ?>" />
 		<input type="hidden" name="hash" value="<?php echo $hash;  ?>"/>
 		<input type="hidden" name="txnid" value="<?php echo $_POST['txnid'];  ?>" />
@@ -65,6 +65,7 @@ if(!isset($_POST['firstname'])){header("location: makePayments1.php");}
 		<input type="hidden" name="productinfo" value="<?php echo $_POST['productinfo'];  ?>" />
 		<input type="hidden" name="surl" value="<?php echo $_POST['surl'];  ?>" />
 		<input type="hidden" name="furl" value="<?php echo $_POST['furl'];  ?>" />
+		<input type="hidden" name="service_provider" value="payu_paisa" size="64">
 	</form>
 </div>
 </body>

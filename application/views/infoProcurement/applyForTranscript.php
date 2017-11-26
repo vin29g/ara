@@ -91,6 +91,6 @@
   or by Phone to <b>+91 870 246 2024</b></p>
   </div>
   <div class="text-center">
-    <a href="<?=base_url()?>index/basicInformation" class="btn btn-primary btn-lg">Proceed</a>
+    <a href="<?=base_url()?>basicInformation" class="btn btn-primary btn-lg">Proceed</a>
   </div>
 </div>

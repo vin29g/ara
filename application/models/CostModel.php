@@ -170,7 +170,10 @@ class CostModel extends CI_Model{
 		$data['batch']=$user_data['batch'];
 		$data['country']=$user_data['country'];
 		$data['contact']=$user_data['contact'];
+		$data['address']=$user_data['address'];
 		$data['email']=$user_data['email'];
+		$data['ipaddress']=$user_data['ipaddress'];
+		$data['useragent']=$user_data['useragent'];
 		$rows = $this->db->select('id')->from('courses')->where('course',$user_data['branch'])->get()->result_array();
 		$data['course_id']=$rows[0]['id'];
 		$user_id=0;
