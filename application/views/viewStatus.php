@@ -1,5 +1,5 @@
 <?php $this->load->view('errors/flashdata');?>
-<form class="form-horizontal" action="<?=base_url()?>/index/check" method="post" >
+<form class="form-horizontal" action="<?=base_url()?>/check" method="post" >
   <fieldset>
     <legend>View Status Of Application</legend>
 

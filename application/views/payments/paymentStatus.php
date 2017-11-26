@@ -23,6 +23,7 @@
 					<tr>
 						<td>Status</td>
 						<td>
+						
 							<?php if($status=="success"):?>
 								<p class="text-success">Success</p>
 							<?php elseif($status=="failure"):?>

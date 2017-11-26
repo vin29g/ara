@@ -39,19 +39,19 @@ else $USD_CHECK=false;
 			<tr>
 				<td>firstname</td>
 				<td>
-				<input type="hidden" name="firstname" value="$firstname" />
+				<input type="hidden" name="firstname" value="<?php echo $firstname ?>" />
 			</td>
 			</tr>
 			<tr>
 				<td>email</td>
 				<td>
-				<input type="hidden" name="email" value="$email" />
+				<input type="hidden" name="email" value="<?php echo $email ?>" />
 			</td>
 			</tr>
 			<tr>
 				<td>phone</td>
 				<td>
-				<input type="hidden" name="phone" value="$phone" />
+				<input type="hidden" name="phone" value="<?php echo $phone ?>" />
 			</td>
 			</tr>
 			<tr>

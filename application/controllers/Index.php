@@ -40,7 +40,7 @@ class Index extends MX_Controller {
 	public function costDescription(){
 		if(count($this->input->post())==0)
 			redirect('/','refresh');
-		print_r($_POST);
+		//print_r($_POST);
 		$this->load->model('CostModel');
 		$this->CostModel->saveSelectedScripts();
 		$this->CostModel->calculateCost();
@@ -157,7 +157,7 @@ class Index extends MX_Controller {
 		$bankrefno=$this->input->post('bankrefno');
 		$txnamount=$this->input->post('txnamount');
 		$errorStatus=$this->input->post('errorStatus');
-		$status=(int)$status;
+		//$status=(int)$status;
 		$this->TransactionModel->add($request_id,$status,$txnrefno,
 			$bankrefno,$txnamount,$errorStatus);
 			$data['title']="Payment Status";

@@ -69,6 +69,8 @@ $route['testimonials']='index/reviews';
 $route['applyForTranscript']='index/applyForTranscript';
 $route['viewStatus']='index/viewStatus';
 $route['basicInformation'] = 'index/basicInformation';
+$route['transactionStatus']= 'index/transactionStatus';
+$route['check'] = 'index/check';
 
 $route['paintcost']='index';
 $route['asianpaint']='index/paints';

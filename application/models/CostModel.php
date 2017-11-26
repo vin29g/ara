@@ -65,12 +65,12 @@ class CostModel extends CI_Model{
 
 	public function saveUploadedFiles(){
 		$userinfo=$this->session->userdata('step1_data');
-		$dir=$this->config->base_url().'uploads/transcripts/'.$this->session->userdata('req_id');
-		// print($dir);
+		$dir='/var/www/html/ara/uploads/transcripts/'.$this->session->userdata('req_id');
+		//print($dir);
 		if( is_dir($dir) === false )
 		{
-			mkdir($dir);
-			// $this->session->set_flashdata('warning', "creating Directory! at ".$dir);
+			mkdir($dir,0777,true);
+			//$this->session->set_flashdata('warning', "creating Directory! at ".$dir);
 		}
 		else{
 			//  $this->session->set_flashdata('message', "Error creating Directory! at ".$dir);
@@ -135,7 +135,7 @@ class CostModel extends CI_Model{
 			));
 		}
 		$this->db->insert_batch("request_services",$data);
-		var_dump($session_data['price']);
+		//var_dump($session_data['price']);
 		if($session_data['price'] == 0)
 			$status=1;
 		else
