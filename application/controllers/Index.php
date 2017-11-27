@@ -227,14 +227,14 @@ class Index extends MX_Controller {
 
 		if($this->ion_auth->is_admin())
 			{
-		$this->load->model('AdminModel');
-		$data['data']=$this->AdminModel->updateRequest();
+			$this->load->model('AdminModel');
+			$data['data']=$this->AdminModel->updateRequest();
 
-		$data['data'] = $this->AdminModel->getData();
-		$data['title']="View Requests";
-		$data['current_page']="viewRequests";
-
-		$this->_render_page("admin/viewRequests",$data);
+			$data['data'] = $this->AdminModel->getData();
+			$data['title']="View Requests";
+			$data['current_page']="viewRequests";
+			redirect('viewRequests');
+			//$this->_render_page("admin/viewRequests",$data);
 		}
 		else{
 			redirect('index/adminLogin');

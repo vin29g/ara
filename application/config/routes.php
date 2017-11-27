@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |   my-controller/my-method -> my_controller/my_method
 */
 $route['default_controller'] = 'index';
-$route['404_override'] = 'index/handle404';
+$route['404_override'] = 'index/handle_404';
 $route['translate_uri_dashes'] = TRUE;
 $route['textures']='index/textures';
 $route['textures/(:any)']='index/textures/$1';
@@ -71,6 +71,9 @@ $route['viewStatus']='index/viewStatus';
 $route['basicInformation'] = 'index/basicInformation';
 $route['transactionStatus']= 'index/transactionStatus';
 $route['check'] = 'index/check';
+$route['viewRequests']='index/viewRequests';
+$route['editRequests']='index/editRequests';
+$route['updateRequest']='index/updateRequest';
 
 $route['paintcost']='index';
 $route['asianpaint']='index/paints';

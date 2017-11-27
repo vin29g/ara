@@ -1,5 +1,5 @@
 <?php $this->load->view('errors/flashdata');?>
-<form class="form-horizontal" action="<?=base_url()?>index/updateRequest" method="post" id="editreq">
+<form class="form-horizontal" action="<?=base_url()?>updateRequest" method="post" id="editreq">
   <fieldset>
     <legend>Update Information</legend>
 
