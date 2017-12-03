@@ -442,7 +442,7 @@ class CostModel extends CI_Model{
 
 		for ($i=0; $i < count($countries); $i++) {
 			if($countries[$i]==$postal_country){
-				echo $postal_charges[$i];
+				// echo $postal_charges[$i];
 				$postal_charge=$charges*$postal_charges[$i];
 				$price=$price+(float)$postal_charge;
 				// echo $price;

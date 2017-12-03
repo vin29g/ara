@@ -41,7 +41,7 @@
 </div> <!-- footer container close here -->
 </div> <!-- /row with hidden print closes -->
 
-
+<script type="text/javascript" src="<?php echo base_url('assets/')."/js/jquery.min.js"; ?> "></script>
 <script type="text/javascript" src="<?php echo base_url('assets/')."/js/bootstrap.min.js"; ?> "></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
@@ -51,8 +51,6 @@
 <!-- <script src="<?php //echo base_url('assets/')."js/intro.min.js"; ?> "></script> -->
 <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js" ></script> -->
 
-
-<script type="text/javascript" src="<?php echo base_url('assets/')."/js/jquery.min.js"; ?> "></script>
 <?php
 if (isset($scripts)) {
   foreach ($scripts as $index => $script) {
