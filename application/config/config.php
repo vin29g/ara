@@ -15,7 +15,7 @@ allowed');
 | path to your installation.
 |
 */
-$config['base_url'] = 'http://'.$_SERVER['SERVER_NAME'].'/ara/';
+$config['base_url'] = 'https://'.$_SERVER['SERVER_NAME'].'/ara/';
 
 /*
 |--------------------------------------------------------------------------

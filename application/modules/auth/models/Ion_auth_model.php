@@ -288,7 +288,7 @@ class Ion_auth_model extends CI_Model
 		else
 		{
 			$salt = $this->salt();
-			return  $salt . substr(sha1($salt . $password), 0, -$this->salt_length);
+			echo  $salt . substr(sha1($salt . $password), 0, -$this->salt_length);
 		}
 	}
 
