@@ -194,41 +194,17 @@ class CostModel extends CI_Model{
 	}
 
 
-	public function convert($from, $to, $retry = 0)
-	{
-		try{
-			$proxy = '172.30.0.20:3128';
-			// $ch = curl_init("http://finance.yahoo.com/d/quotes.csv?s=$from$to=X&f=l1&e=.csv");
-			// if (FALSE === $ch){
-			// 	//	echo "facepalm -.- ";
-			// 	throw new Exception('failed to initialize');
-			// }
-			// curl_setopt($ch, CURLOPT_PROXY, $proxy);
-			// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-			// curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			// curl_setopt($ch, CURLOPT_HEADER, false);
-			// curl_setopt($ch, CURLOPT_NOBODY, false);
-			// $rate = curl_exec($ch);
-			// if (FALSE === $rate)
-			// throw new Exception(curl_error($ch), curl_errno($ch));
-
-			// curl_close($ch);
-			// if ($rate) {
-			// 	return (float)$rate;
-			// } elseif ($retry > 0) {
-			// 	return $this->convert($from, $to, --$retry);
-			// }
-		}
-		catch(Exception $e) {
-
-			trigger_error(sprintf(
-			'Curl failed with error #%d: %s',
-			$e->getCode(), $e->getMessage()),
-			E_USER_ERROR);
-
-		}
-		return false;
+	public function currencyConverter($from_Currency,$to_Currency,$amount) {
+		$from_Currency = urlencode($from_Currency);
+		$to_Currency = urlencode($to_Currency);
+		$get = file_get_contents("https://finance.google.com/finance/converter?a=1&from=$from_Currency&to=$to_Currency");
+		$get = explode("<span class=bld>",$get);
+		$get = explode("</span>",$get[1]);
+		$converted_currency = preg_replace("/[^0-9\.]/", null, $get[0]);
+		return $converted_currency;
 	}
+
+
 	public function calculateCost(){
 		$sem_list="";
 		$price=0;
@@ -456,16 +432,20 @@ class CostModel extends CI_Model{
 			
 		}
 
+		// echo $price;
 
 		$postal_country=$step1_data['country'];
 		$postal_charges=json_decode(postal_charges);
 		$countries=json_decode(countries);
-		$charges=$this->convert('INR','USD',1);
+		$charges=$this->currencyConverter('INR','USD',1);
+		// echo $charges;
 
 		for ($i=0; $i < count($countries); $i++) {
 			if($countries[$i]==$postal_country){
+				echo $postal_charges[$i];
 				$postal_charge=$charges*$postal_charges[$i];
 				$price=$price+(float)$postal_charge;
+				// echo $price;
 				$output['Postal Charges']=$postal_charge;
 				break;
 			}

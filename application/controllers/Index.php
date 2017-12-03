@@ -137,7 +137,7 @@ class Index extends MX_Controller {
 			$data['current_page']="makePayments1";
 			$from   = 'USD'; /*change it to required currencies */
 			$to     = 'INR';
-			$data['dollarValue'] = $this->CostModel->convert($from,$to,1);
+			$data['dollarValue'] = $this->CostModel->currencyConverter($from,$to,1);
 			$this->_render_page("infoProcurement/makePayments1",$data);
 		}
 
@@ -283,6 +283,20 @@ class Index extends MX_Controller {
 			);
 
 		if ($returnhtml) return $view_html;//This will return html on 3rd argument being true
+	}
+
+	public function applicationForm($id=""){
+		if($this->ion_auth->is_admin())
+			{
+		$this->load->model('AdminModel');
+		$data['data'] = $this->AdminModel->getAppData($this->input->get('id'));
+		$data['title']="Application Form";
+		$data['current_page']="applicationForm";
+		$this->_render_page("admin/applicationForm",$data);
+		}
+		else{
+			redirect('index/adminLogin');
+		}
 	}
 
 }

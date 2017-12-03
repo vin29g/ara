@@ -31,14 +31,17 @@ class AdminModel extends CI_Model{
   }
 
 public function getData(){
-	$this->db->select('user_info.name, user_info.rollno, user_info.contact, user_info.email, 
+	$this->db->select('user_info.name, user_info.rollno, user_info.contact, user_info.email,user_info.address, 
 		               user_requests.request_id, user_requests.status, user_requests.sem_list, user_requests.date,user_requests.assigned, user_requests.completion_date,
-		               services.description,costs.type')
+		               services.description,costs.type, transactions.txnamount, uploaded_documents.doc1')
 	->from("user_requests")
+  ->where("transactions.status = 1")
 	->join("user_info",'user_requests.user_id = user_info.id')
 	->join("request_services",'request_services.request_id=user_requests.request_id')
 	->join("costs",'request_services.service_id = costs.id')
-	->join("services",'costs.service = services.id');
+	->join("services",'costs.service = services.id')
+  ->join("transactions",'user_requests.request_id = transactions.request_id')
+  ->join("uploaded_documents",'uploaded_documents.request_id = transactions.request_id');
 
 
 	$query = $this->db->get();
@@ -154,5 +157,68 @@ public function getData(){
        
 	}
 
+public function getAppData($id=""){
+  $this->db->select('user_info.*, courses.course,
+                   user_requests.request_id, user_requests.status, user_requests.sem_list, user_requests.date,user_requests.assigned, user_requests.completion_date,
+                   services.description,costs.type, transactions.txnamount, uploaded_documents.doc1')
+  ->from("user_requests")
+  ->where('user_requests.request_id',$id)
+  ->join("user_info",'user_requests.user_id = user_info.id')
+  ->join("request_services",'request_services.request_id=user_requests.request_id')
+  ->join("costs",'request_services.service_id = costs.id')
+  ->join("services",'costs.service = services.id')
+  ->join("courses",'courses.id=user_info.course_id')
+  ->join("transactions",'user_requests.request_id = transactions.request_id')
+  ->join("uploaded_documents",'uploaded_documents.request_id = transactions.request_id');
+
+
+  $query = $this->db->get();
+  // $count = $query->num_rows();
+  $data = $query->result_array();
+
+
+  $count = 1;
+  $new_data = array();
+    $i=0;
+  while( $i <$count )
+  {
+    $data[$i]['status']= $this->Status_value($data[$i]['status']);
+    if($data[$i]['completion_date']==NULL)
+      $data[$i]['completion_date']="Incomplete";
+    
+    $typ = "";
+    $temp_i = $i;
+    $temp_id = $data[$i]['request_id'];
+    $records = array();
+    $typ = '';
+    while( $i <$count  && $data[$i]['request_id'] == $temp_id)
+    {
+      if($data[$i]['type'] != null)
+      {
+        if($data[$i]['type']== 0 )
+          $typ = '-Original';
+        else if($data[$i]['type'] == 1)
+          $typ = '-Duplicate';
+        }
+      array_push($records, $data[$i]['description'].$typ);
+      $this->db->select('*')->from('transactions')->where('request_id',$data[$i]['request_id']);
+      $rquery=$this->db->get();
+      $rresult=$rquery->result_array();
+      $data[$i]['tstatus']=0;
+      if(count($rresult)>0)
+      $data[$i]['tstatus']=$rresult[0]['status'];
+      $i = $i+1;
+      $typ = "";
+    }
+    
+    array_push($new_data,$data[$temp_i]);
+    $new_data[sizeof($new_data)-1]['description']=$records;
+  }
+    // var_dump($data[sizeof($data)-1]);
+    // echo "string \n \n";
+    // var_dump($new_data[sizeof($new_data)-1]);
+  return $new_data[0];
+    
+ }
 
 }

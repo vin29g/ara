@@ -74,6 +74,7 @@ $route['check'] = 'index/check';
 $route['viewRequests']='index/viewRequests';
 $route['editRequests']='index/editRequests';
 $route['updateRequest']='index/updateRequest';
+$route['applicationForm']='index/applicationForm';
 
 $route['paintcost']='index';
 $route['asianpaint']='index/paints';
